@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package ontimely.slots;
+
+import "google/protobuf/timestamp.proto";
+
+service SlotService {
+    rpc GetFreeSlots(GetFreeSlotsRequest) returns (GetFreeSlotsResponse);
+}
+
+message GetFreeSlotsRequest {
+    string offering_id = 1;
+    google.protobuf.Timestamp from = 2;
+    google.protobuf.Timestamp to = 3;
+}
+
+message GetFreeSlotsResponse {
+    repeated Slot slots = 1;
+}
+
+message Slot {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
+}
+
